@@ -1,0 +1,307 @@
+<!-- <script src="https://www.google.com/jsapi" type="text/javascript"></script> -->
+<!-- <script type="text/javascript">google.load("jquery", "1.3.2");</script> -->
+
+<html>
+<head>
+    <title>Zero-shot Image-to-Image Translation</title>
+    <meta property="og:image" content="resources/teaser.jpeg"/>
+    <meta property="og:title" content="Zero-shot Image-to-Image Translation"/>
+    <meta property="og:description" content="Zero-shot Image-to-Image Translation"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/image_card_flip.css">
+    <link rel="stylesheet" href="styles/image_card_slider.css">
+    
+</head>
+
+<body>
+<br>
+    <center>
+    <span style="font-size:36px"><span style="font-weight: bold;">pix2pix-zero:</span> <br> Zero-shot Image-to-Image Translation</span>
+    <table align=center width=600px>
+        
+        <br>
+        <table align=center width=250px>
+            <tr>
+                <td align=center width=120px>
+                    <center>
+                        <!-- <span style="font-size:24px"><a href='TODO'>[Paper]</a></span> -->
+                        <span style="font-size:24px; margin-left: 30px;"><a href='https://github.com/pix2pixzero/pix2pix-zero'>[Code]</a></span>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </table>
+    </center>
+    
+    <br>
+
+    <center>
+        <table align=center width=1000px>
+            <tr>
+                <td width=260px>
+                    <center>
+                        <img class="round" src="./assets/main_v6.gif" style="width:900px"/>
+                    </center>
+                </td>
+            </tr>
+        </table>
+        
+    </center>
+    <p> 
+        We propose pix2pix-zero, a new new diffusion based image editing approach that is training-free and prompt-free. 
+        Our method can directly use use pre-trained text-to-image diffusion models, such as Stable Diffusion, for editing 
+        real and synthetic image while edsuring adherance of the output image's structure to the input. Additionally, 
+        our approach allows for the editing of images through pre-computed edit directions, 
+        eliminating the requirement for sentence modifications. 
+        
+        <br>
+        <span style="font-weight: 800;">TL;DR:</span> <span style=" color: #941120;"> no finetuning</span>  required, <span style=" color: #941120;"> no text input</span> needed, input <span style=" color: #941120;"> sturcture preserved.</span> 
+    </p>
+
+    <hr>
+    <center><h1>Abstract</h1></center>
+    <p> 
+        Large-scale text-to-image generative models have shown their remarkable ability to synthesize diverse and high-quality images. 
+        However, it is still challenging to directly apply these models for editing real images for two reasons. 
+        First, it is hard for users to come up with a perfect text prompt that accurately describes every visual detail in the input image. 
+        Second, while existing models can introduce desirable changes in certain regions, they often dramatically alter the input 
+        content and introduce unexpected changes in unwanted regions. 
+        In this work, we propose pix2pix-zero, an image-to-image translation method that can preserve the content of the original image 
+        without manual prompting. We first automatically discover editing directions that reflect desired edits in the text embedding space.
+        To preserve the general content structure after editing, we further propose cross-attention guidance, which aims to 
+        retain the cross-attention maps of the input image throughout the diffusion process. In addition, our method does not need 
+        additional training for these edits and can directly use the existing pre-trained text-to-image diffusion model.
+        We conduct extensive experiments and show that our method outperforms existing and concurrent works for 
+        both real and synthetic image editing.   
+    </p>
+    <hr>
+    
+
+    <h1><span style="font-weight: bold;">Results: </span>real image translation</h1>
+    <center><p style=" color: #941120;">[ Click on the image to see the edits! ]</p></center>
+
+
+    <center>
+        <table align=center width=1100px>
+            <tr>
+                <div class="d-flex justify-content-center">
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                          <div class="flip-card-front"> <img src="assets/1_cat_dog/cat_a.jpg" style="width:360px"> </div>
+                          <div class="flip-card-back"> <img src="assets/1_cat_dog/dog_a.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                        <div class="flip-card-front"> <img src="assets/1_cat_dog/cat_b.jpg" style="width:360px"> </div>
+                        <div class="flip-card-back"> <img src="assets/1_cat_dog/dog_b.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                        <div class="flip-card-front"> <img src="assets/1_cat_dog/cat_c.jpg" style="width:360px"> </div>
+                        <div class="flip-card-back"> <img src="assets/1_cat_dog/dog_c.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                  </div><br>
+                  <center>
+                    <p>cat <i class="far fa-arrow-alt-circle-right" style="width: 40px;"></i> dog</p>
+                  </center>
+            </tr>
+        </table><br><br>
+
+        <table align=center width=1100px>
+            <tr>
+                <div class="d-flex justify-content-center">
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                          <div class="flip-card-front"> <img src="assets/2_zebra_horse/zebra_a.jpg" style="width:360px"> </div>
+                          <div class="flip-card-back"> <img src="assets/2_zebra_horse/horse_a.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                        <div class="flip-card-front"> <img src="assets/2_zebra_horse/zebra_b.jpg" style="width:360px"> </div>
+                        <div class="flip-card-back"> <img src="assets/2_zebra_horse/horse_b.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                        <div class="flip-card-front"> <img src="assets/2_zebra_horse/zebra_c.jpg" style="width:360px"> </div>
+                        <div class="flip-card-back"> <img src="assets/2_zebra_horse/horse_c.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                  </div><br>
+                  <center>
+                    <p>zebra <i class="far fa-arrow-alt-circle-right" style="width: 40px;"></i> horse</p>
+                  </center>
+            </tr>
+        </table><br><br>
+
+
+        <table align=center width=1100px>
+            <tr>
+                <div class="d-flex justify-content-center">
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                          <div class="flip-card-front"> <img src="assets/3_dog_cat/dog_a.jpg" style="width:360px"> </div>
+                          <div class="flip-card-back"> <img src="assets/3_dog_cat/cat_a.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                        <div class="flip-card-front"> <img src="assets/3_dog_cat/dog_b.jpg" style="width:360px"> </div>
+                        <div class="flip-card-back"> <img src="assets/3_dog_cat/cat_b.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                        <div class="flip-card-front"> <img src="assets/3_dog_cat/dog_c.jpg" style="width:360px"> </div>
+                        <div class="flip-card-back"> <img src="assets/3_dog_cat/cat_c.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                  </div><br>
+                  <center>
+                    <p>dog <i class="far fa-arrow-alt-circle-right" style="width: 40px;"></i> cat</p>
+                  </center>
+            </tr>
+        </table><br><br>
+
+        <table align=center width=1100px>
+            <tr>
+                <div class="d-flex justify-content-center">
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                          <div class="flip-card-front"> <img src="assets/4_horse_zebra/horse_a.jpg" style="width:360px"> </div>
+                          <div class="flip-card-back"> <img src="assets/4_horse_zebra/zebra_a.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                        <div class="flip-card-front"> <img src="assets/4_horse_zebra/horse_b.jpg" style="width:360px"> </div>
+                        <div class="flip-card-back"> <img src="assets/4_horse_zebra/zebra_b.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                        <div class="flip-card-front"> <img src="assets/4_horse_zebra/horse_c.jpg" style="width:360px"> </div>
+                        <div class="flip-card-back"> <img src="assets/4_horse_zebra/zebra_c.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                  </div><br>
+                  <center>
+                    <p>horse <i class="far fa-arrow-alt-circle-right" style="width: 40px;"></i> zebra</p>
+                  </center>
+            </tr>
+        </table><br><br>
+
+        <table align=center width=1100px>
+            <tr>
+                <div class="d-flex justify-content-center">
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                          <div class="flip-card-front"> <img src="assets/5_tree_fall/tree_a.jpg" style="width:360px"> </div>
+                          <div class="flip-card-back"> <img src="assets/5_tree_fall/treefall_a.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                        <div class="flip-card-front"> <img src="assets/5_tree_fall/tree_b.jpg" style="width:360px"> </div>
+                          <div class="flip-card-back"> <img src="assets/5_tree_fall/treefall_b.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                        <div class="flip-card-front"> <img src="assets/5_tree_fall/tree_c.jpg" style="width:360px"> </div>
+                          <div class="flip-card-back"> <img src="assets/5_tree_fall/treefall_c.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                  </div><br>
+                  <center>
+                    <p>tree <i class="far fa-arrow-alt-circle-right" style="width: 40px;"></i> tree during fall</p>
+                  </center>
+            </tr>
+        </table><br><br>
+    </center>
+
+    <hr>
+    <br>
+    <h1>Method</h1>
+    <br>
+    <center>
+        <table align=center width=1000px style="margin-bottom: 20px;">
+            <tr>
+                <td width=1000px>
+                    <center>
+                        <img class="round" src="./assets/method.jpg" style="width:1000px"/>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p> 
+        Given an input image, we first generate text captions using BLIP and apply regularized DDIM inversion to obtain 
+        our inverted noise map. Then, we obtain reference cross-attention maps that correspoind to the structure of the 
+        input image by denoising, guided with the CLIP embeddings of our generated text (c). Next, we denoise with edited 
+        text embeddings, while enforcing a loss to match current cross-attention maps with the reference cross-attention maps. 
+        For more details, please refer to our paper.
+    </p>
+
+
+        
+    
+    <br>
+    
+    <center>
+        <h2><span style="font-weight: bold;">More Results: </span>real image editing</h2>
+        <table align=center width=1100px>
+            <tr>
+                <td width=260px>
+                    <center>
+                        <img class="round" src="./assets/results_row_3.jpg" style="width:1100px"/>
+                    </center>
+                </td>
+            </tr>
+        </table>
+        <table align=center width=1100px>
+            <tr>
+                <td width=260px>
+                    <center>
+                        <img class="round" src="./assets/results_row_4.jpg" style="width:1100px"/>
+                    </center>
+                </td>
+            </tr>
+        </table>
+        <table align=center width=1100px>
+            <tr>
+                <td width=260px>
+                    <center>
+                        <img class="round" src="./assets/results_row_5.png" style="width:1100px"/>
+                    </center>
+                </td>
+            </tr>
+        </table>
+
+        <hr>
+        <h2><span style="font-weight: bold;">More Results: </span>synthetic image editing</h2>
+        <table align=center width=1100px>
+            <tr>
+                <td width=260px>
+                    <center>
+                        <img class="round" src="./assets/synth_results_row_1.jpg" style="width:1100px"/>
+                    </center>
+                </td>
+            </tr>
+        </table>
+        <table align=center width=1100px>
+            <tr>
+                <td width=260px>
+                    <center>
+                        <img class="round" src="./assets/synth_results_row_2.jpg" style="width:1100px"/>
+                    </center>
+                </td>
+            </tr>
+        </table>
+        
+        
+    </center>
+    
+    
+    
+
+
+    <hr>
+
+    <hr>
+    <script>
+        $(".flip-card").click(function() {
+            console.log("flipping")
+          $(this).toggleClass("flipped");
+        });
+
+        // $(".card-front").click(function() {
+        //     card_back = $(this).next()[0];
+        //     $(card_back).animate({
+        //         width: "toggle",
+        //     }, "slow");
+            
+        // });
+    </script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>    
+</body>
+</html>
+
