@@ -42,23 +42,35 @@
             <tr>
                 <td width=260px>
                     <center>
+                        <img class="round" src="./assets/teaser_image.jpg" style="width:900px"/>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </center>
+    
+    <p> 
+        <!-- We propose pix2pix-zero, a new new diffusion based image editing approach that is training-free and prompt-free. 
+        Our method can directly use use pre-trained text-to-image diffusion models, such as Stable Diffusion, for editing 
+        real and synthetic image while edsuring adherance of the output image's structure to the input. Additionally, 
+        our approach allows for the editing of images through pre-computed edit directions, 
+        eliminating the requirement for sentence modifications.  -->
+        We propose pix2pix-zero, a diffusion-based image-to approach that allows users to specify the edit direction on-the-fly (e.g., cat to dog). Our method can directly use pre-trained text-to-image diffusion models, such as Stable Diffusion, for editing real and synthetic images while preserving the input image's structure. Our method is training-free and prompt-free, as it requires neither manual text prompting for each input image nor costly fine-tuning for each task.
+        <br>
+        <span style="font-weight: 800;">TL;DR:</span> <span style=" color: #941120;"> no finetuning</span>  required, <span style=" color: #941120;"> no text input</span> needed, input <span style=" color: #941120;"> sturcture preserved.</span> 
+    </p>
+
+    <center>
+        <table align=center width=1000px>
+            <tr>
+                <td width=260px>
+                    <center>
                         <img class="round" src="./assets/main_v6.gif" style="width:900px"/>
                     </center>
                 </td>
             </tr>
         </table>
-        
     </center>
-    <p> 
-        We propose pix2pix-zero, a new new diffusion based image editing approach that is training-free and prompt-free. 
-        Our method can directly use use pre-trained text-to-image diffusion models, such as Stable Diffusion, for editing 
-        real and synthetic image while edsuring adherance of the output image's structure to the input. Additionally, 
-        our approach allows for the editing of images through pre-computed edit directions, 
-        eliminating the requirement for sentence modifications. 
-        
-        <br>
-        <span style="font-weight: 800;">TL;DR:</span> <span style=" color: #941120;"> no finetuning</span>  required, <span style=" color: #941120;"> no text input</span> needed, input <span style=" color: #941120;"> sturcture preserved.</span> 
-    </p>
 
     <hr>
     <center><h1>Abstract</h1></center>
@@ -286,10 +298,22 @@
 
     <hr>
     <script>
-        $(".flip-card").click(function() {
+        // $(".flip-card").click(function() {
+        //     console.log("flipping")
+        //   $(this).toggleClass("flipped");
+        // });
+
+        $(".flip-card").mouseenter(function() {
             console.log("flipping")
           $(this).toggleClass("flipped");
         });
+
+        $(".flip-card").mouseleave(function() {
+            console.log("flipping")
+          $(this).toggleClass("flipped");
+        });
+
+
 
         // $(".card-front").click(function() {
         //     card_back = $(this).next()[0];
