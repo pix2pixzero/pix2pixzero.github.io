@@ -10,7 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/image_card_flip.css">
+    <!-- <link rel="stylesheet" href="styles/image_card_flip.css"> -->
+    <link rel="stylesheet" href="styles/image_card_fader.css">
     <link rel="stylesheet" href="styles/image_card_slider.css">
     
 </head>
@@ -58,7 +59,7 @@
         We propose <span style="font-weight: bold;">pix2pix-zero</span>, a diffusion-based image-to-image approach that allows users to 
         specify the edit direction on-the-fly (e.g., cat to dog). Our method can directly use pre-trained text-to-image diffusion models, such as Stable Diffusion, for editing real and synthetic images while preserving the input image's structure. Our method is training-free and prompt-free, as it requires neither manual text prompting for each input image nor costly fine-tuning for each task.
         <br>
-        <span style="font-weight: 800;">TL;DR:</span> <span style=" color: #941120;"> no finetuning</span>  required, <span style=" color: #941120;"> no text input</span> needed, input <span style=" color: #941120;"> sturcture preserved.</span> 
+        <span style="font-weight: 800;">TL;DR:</span> <span style=" color: #941120;"> no finetuning</span>  required; <span style=" color: #941120;"> no text input</span> needed; input <span style=" color: #941120;"> structure preserved</span>. 
     </p>
 
     <center>
@@ -303,14 +304,42 @@
         //   $(this).toggleClass("flipped");
         // });
 
+        // $(".flip-card").mouseenter(function() {
+        //     console.log("flipping")
+        //   $(this).toggleClass("flipped");
+        // });
+
+        // $(".flip-card").mouseleave(function() {
+        //     console.log("flipping")
+        //   $(this).toggleClass("flipped");
+        // });
+
         $(".flip-card").mouseenter(function() {
-            console.log("flipping")
-          $(this).toggleClass("flipped");
+            console.log("fading in")
+            div_back = $(this).children().children()[1]
+            div_front = $(this).children().children()[0]
+            // console.log($(this).children("div.flip-card-back"))
+            console.log(div_back)
+            $(div_front).addClass("out");
+            $(div_front).removeClass("in");
+
+            $(div_back).addClass("in");
+            $(div_back).removeClass("out");
+
         });
 
         $(".flip-card").mouseleave(function() {
-            console.log("flipping")
-          $(this).toggleClass("flipped");
+            console.log("fading in")
+            div_back = $(this).children().children()[1]
+            div_front = $(this).children().children()[0]
+            // console.log($(this).children("div.flip-card-back"))
+            console.log(div_back)
+            $(div_front).addClass("in");
+            $(div_front).removeClass("out");
+
+            $(div_back).addClass("out");
+            $(div_back).removeClass("in");
+
         });
 
 

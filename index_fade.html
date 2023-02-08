@@ -1,0 +1,94 @@
+<!-- <script src="https://www.google.com/jsapi" type="text/javascript"></script> -->
+<!-- <script type="text/javascript">google.load("jquery", "1.3.2");</script> -->
+
+<html>
+<head>
+    <title>Zero-shot Image-to-Image Translation</title>
+    <meta property="og:image" content="resources/teaser.jpeg"/>
+    <meta property="og:title" content="Zero-shot Image-to-Image Translation"/>
+    <meta property="og:description" content="Zero-shot Image-to-Image Translation"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/image_card_fader.css">
+    <link rel="stylesheet" href="styles/image_card_slider.css">
+    
+</head>
+
+<body>
+<br>
+    <center>
+    <span style="font-size:36px">Zero-shot Image-to-Image Translation</span>
+    </center>
+    
+    <br>
+
+    
+    
+
+    <h1><span style="font-weight: bold;">Results: </span>real image translation</h1>
+    <center><p style=" color: #941120;">[ Hover over the image to see the edits! ]</p></center>
+
+
+    <center>
+        <table align=center width=1100px>
+            <tr>
+                <div class="d-flex justify-content-center">
+                    <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                          <div class="flip-card-front"> <img src="assets/1_cat_dog/cat_a.jpg" style="width:360px;"> </div>
+                          <div class="flip-card-back"> <img src="assets/1_cat_dog/dog_a.jpg" style="width:360px;"> </div>
+                    </div> </div> </div>
+                    <div class="flip-card-container"> <div class="flip-card" style="margin-left: 50px;"> <div class="flip-card-inner">
+                        <div class="flip-card-front"> <img src="assets/1_cat_dog/cat_b.jpg" style="width:360px"> </div>
+                        <div class="flip-card-back"> <img src="assets/1_cat_dog/dog_b.jpg" style="width:360px"> </div>
+                    </div> </div> </div>
+                    <div class="flip-card-container"> <div class="flip-card" style="margin-left: 50px;"> <div class="flip-card-inner">
+                        <div class="flip-card-front"> <img src="assets/1_cat_dog/cat_c.jpg" style="width:360px;"> </div>
+                        <div class="flip-card-back"> <img src="assets/1_cat_dog/dog_c.jpg" style="width:360px;"> </div>
+                    </div> </div> </div>
+                  </div><br>
+                  <center>
+                    <p>cat <i class="far fa-arrow-alt-circle-right" style="width: 40px;"></i> dog</p>
+                  </center>
+            </tr>
+        </table><br><br><br>
+    
+    <hr>
+    <script>
+
+        $(".flip-card").mouseenter(function() {
+            console.log("fading in")
+            div_back = $(this).children().children()[1]
+            div_front = $(this).children().children()[0]
+            // console.log($(this).children("div.flip-card-back"))
+            console.log(div_back)
+            $(div_front).addClass("out");
+            $(div_front).removeClass("in");
+
+            $(div_back).addClass("in");
+            $(div_back).removeClass("out");
+
+        });
+
+        $(".flip-card").mouseleave(function() {
+            console.log("fading in")
+            div_back = $(this).children().children()[1]
+            div_front = $(this).children().children()[0]
+            // console.log($(this).children("div.flip-card-back"))
+            console.log(div_back)
+            $(div_front).addClass("in");
+            $(div_front).removeClass("out");
+
+            $(div_back).addClass("out");
+            $(div_back).removeClass("in");
+
+        });
+
+
+    </script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>    
+</body>
+</html>
+
