@@ -1,0 +1,6 @@
+@inproceedings{parmar2023zero,
+  title={Zero-shot image-to-image translation},
+  author={Parmar, Gaurav and Singh, Krishna Kumar and Zhang, Richard and Li, Yijun and Lu, Jingwan and Zhu, Jun-Yan},
+  booktitle={ACM SIGGRAPH 2023 Conference Proceedings},
+  year={2023}
+}
